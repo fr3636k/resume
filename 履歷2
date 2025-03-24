@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的履歷</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            transition: margin-left 0.3s; /* 滑動過渡效果 */
+        }
+
+        .container {
+            max-width: 1000px;
+            margin-left: 240px; /* 留出空間給抽屜 */
+            padding: 30px;
+            background-color: #222;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #e6e6e6;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #f5a623;
+        }
+
+        .section p, .section ul {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            list-style-type: disc;
+        }
+
+        /* 左側抽屜樣式 */
+        #drawer {
+            height: 100%;
+            width: 240px;
+            position: fixed;
+            top: 0;
+            left: -240px; /* 預設隱藏在左邊 */
+            background-color: #111;
+            color: #fff;
+            padding-top: 20px;
+            transition: 0.3s; /* 滑動效果 */
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #drawer a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 1.2em;
+            color: #f5a623;
+            display: block;
+            transition: 0.3s;
+        }
+
+        #drawer a:hover {
+            background-color: #444;
+        }
+
+        /* 抽屜的開關按鈕 */
+        #drawerToggle {
+            font-size: 30px;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #111;
+            color: #fff;
+            padding: 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #drawerToggle:hover {
+            background-color: #444;
+        }
+
+        /* 圓形大頭照 */
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover; /* 保持圖片比例 */
+        }
+
+        /* 個人資訊區域的排版 */
+        .personal-info {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- 左側抽屜 -->
+    <div id="drawer">
+        <a href="#">個人資訊</a>
+        <a href="#">教育背景</a>
+        <a href="#">工作經歷</a>
+        <a href="#">技能</a>
+    </div>
+
+    <!-- 切換抽屜的按鈕 -->
+    <button id="drawerToggle">&#9776;</button>
+
+    <!-- 主內容區 -->
+    <div class="container">
+        <h1>我的履歷</h1>
+        
+        <div class="section personal-info">
+            <!-- 大頭照 -->
+            <img src="大頭照.jpg" alt="李冠廷" class="大頭照-img">
+            
+            <h2>個人資訊</h2>
+            <p>姓名：李冠廷</p>
+            <p>電話：0938-280-289</p>
+            <p>電子郵件：fr3636k@gmail.com</p>
+        </div>
+
+        <div class="section">
+            <h2>教育背景</h2>
+            <p>學校：國立台中科技大學</p>
+            <p>科系：智慧生產工程系</p>
+        </div>
+
+        <div class="section">
+            <h2>工作經歷</h2>
+            <p>公司名稱：友達股份有限公司</p>
+            <p>職位：資訊技術師</p>
+            <p>工作期間：2024-2025</p>
+        </div>
+
+        <div class="section">
+            <h2>技能</h2>
+            <ul>
+                <li>HTML, CSS, JavaScript</li>
+                <li>React, Node.js</li>
+                <li>Git</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 開關抽屜的功能
+        const drawer = document.getElementById('drawer');
+        const drawerToggle = document.getElementById('drawerToggle');
+
+        drawerToggle.addEventListener('click', () => {
+            const currentLeft = drawer.style.left === '0px' ? '-240px' : '0px';
+            drawer.style.left = currentLeft;
+            document.body.style.marginLeft = currentLeft === '0px' ? '240px' : '0px';
+        });
+    </script>
+</body>
+</html>
