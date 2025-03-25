@@ -134,6 +134,56 @@
         .hidden {
             display: none;
         }
+
+        /* 響應式設計 - 手機螢幕 */
+        @media (max-width: 768px) {
+            body {
+                margin-left: 0; /* 手機螢幕時不顯示側邊欄 */
+            }
+
+            #drawer {
+                width: 200px; /* 調整側邊欄寬度 */
+            }
+
+            .container {
+                margin-left: 0;
+                padding: 15px;
+            }
+
+            .section h2 {
+                font-size: 1.5em;
+            }
+
+            .section p {
+                font-size: 1em;
+            }
+
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            #drawerToggle {
+                top: 10px;
+                left: 10px;
+                font-size: 24px;
+            }
+        }
+
+        /* 更小的螢幕 */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .section h2 {
+                font-size: 1.3em;
+            }
+
+            .section p, .section ul {
+                font-size: 0.9em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -225,7 +275,6 @@
         educationBtn.addEventListener('click', () => showSection(education));
         experienceBtn.addEventListener('click', () => showSection(experience));
         skillsBtn.addEventListener('click', () => showSection(skills));
-
         // 預設顯示個人資訊區域
         showSection(personalInfo);
     </script>
