@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的履歷</title>
+    <style>
+        /* 引用本地字體 */
+        @font-face {
+            font-family: 'Roboto';
+            src: url('fonts/Roboto-Regular.woff2') format('woff2'),
+                 url('fonts/Roboto-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Roboto';
+            src: url('fonts/Roboto-Bold.woff2') format('woff2'),
+                 url('fonts/Roboto-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: bold;
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            src: url('fonts/Poppins-Regular.woff2') format('woff2'),
+                 url('fonts/Poppins-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            src: url('fonts/Poppins-SemiBold.woff2') format('woff2'),
+                 url('fonts/Poppins-SemiBold.woff') format('woff');
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #212121; /* 深色背景 */
+            color: #fff;
+            transition: margin-left 0.3s;
+            min-height: 100vh; /* 確保頁面最小高度為 100vh，讓背景延伸至整個螢幕 */
+        }
+
+        h1 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #b39dd6; /* 藕紫色 */
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin-left: 240px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(179, 157, 219, 0.8), rgba(179, 157, 219, 0.8)); /* 藕紫色背景 */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            transition: all 0.5s ease;
+            min-height: calc(100vh - 40px); /* 確保背景延伸整個螢幕，並減去外圍邊距 */
+        }
+
+        .section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: #2c2c2c;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.5s ease;
+            display: none; /* 默認隱藏 */
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateX(0);
+            display: block; /* 顯示當前選擇的區域 */
+        }
+
+        .section h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #b39dd6; /* 藕紫色 */
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .section p, .section ul {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            list-style-type: disc;
+        }
+
+        #drawer {
+            height: 100%;
+            width: 240px;
+            position: fixed;
+            top: 0;
+            left: -240px;
+            background-color: #111;
+            color: #fff;
+            padding-top: 20px;
+            transition: 0.3s;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #drawer a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 1.2em;
+            color: #b39dd6; /* 藕紫色 */
+            display: block;
+            transition: 0.3s;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #drawer a:hover {
+            background-color: #b39dd6; /* 藕紫色 */
+            color: #111;
+        }
+
+        #drawerToggle {
+            font-size: 30px;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #111;
+            color: #fff;
+            padding: 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #drawerToggle:hover {
+            background-color: #444;
+            transform: rotate(90deg); /* 按鈕旋轉 */
+        }
+
+        .personal-info {
+            display: flex; /* 使用 flexbox 讓內容水平排列 */
+            justify-content: space-between; /* 兩端對齊內容 */
+            align-items: center; /* 垂直對齊 */
+            gap: 30px; /* 文字和圖片之間的間距 */
+        }
+
+        .personal-info img {
+            width: 150px; /* 設定圖片大小 */
+            height: 150px; /* 設定圖片大小 */
+            border-radius: 50%; /* 圓形圖片 */
+        }
+
+        .text {
+            max-width: 60%; /* 文字區域的最大寬度 */
+        }
+
+        .section ul {
+            padding-left: 20px;
+            list-style: none;
+        }
+
+        .section ul li::before {
+            content: '✔️';
+            margin-right: 8px;
+        }
+
+        /* 響應式設計 - 手機螢幕 */
+        @media (max-width: 768px) {
+            body {
+                margin-left: 0;
+            }
+
+            #drawer {
+                width: 200px;
+            }
+
+            .container {
+                margin-left: 0;
+                padding: 15px;
+                min-height: calc(100vh - 60px); /* 調整手機螢幕的最小高度 */
+            }
+
+            .section h2 {
+                font-size: 1.5em;
+            }
+
+            .section p {
+                font-size: 1em;
+            }
+
+            .personal-info img {
+                width: 100px;
+                height: 100px;
+            }
+
+            #drawerToggle {
+                top: 10px;
+                left: 10px;
+                font-size: 24px;
+            }
+        }
+
+        /* 更小的螢幕 */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .section h2 {
+                font-size: 1.3em;
+            }
+
+            .section p, .section ul {
+                font-size: 0.9em;
+            }
+        }
+        h1 {
+        color: #D8B7DD; /* 極淺紫色 */
+    }
+        /* 黃色強調色 */
+        .highlight {
+            color: #ffeb3b; /* 黃色 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 左側抽屜 -->
+    <div id="drawer">
+        <br><br><br><br>
+        <a id="personalBtn">基本資訊</a>
+        <a id="educationBtn">教育背景</a>
+        <a id="experienceBtn">工作經歷</a>
+        <a id="skillsBtn">技能</a>
+    </div>
+
+    <!-- 切換抽屜的按鈕 -->
+    <button id="drawerToggle">&#9776;</button>
+
+    <!-- 主內容區 -->
+    <div class="container">
+        <h1>我的履歷</h1>
+
+        <!-- 個人資訊區域 -->
+        <div id="personalInfo" class="section visible">
+            <div class="personal-info">
+                <div class="text">
+                    <h2>個人資訊</h2>
+                    <p>姓名：李冠廷</p>
+                    <p>LI, GUAN-TING</p>
+                    <p>電話：0938-280-289</p>
+                    <p>電子郵件：fr3636k@gmail.com</p>
+                </div>
+                <img src="大頭照.jpg" alt="李冠廷">
+            </div>
+        </div>
+
+        <!-- 教育背景區域 -->
+        <div id="education" class="section">
+            <h2>教育背景</h2>
+            <div class="school">
+                <h3 style="font-size: 24px;">國立台中科技大學</h3>
+                <p>智慧生產工程系</p>
+                <h4>事蹟：</h4>
+                <ul>
+                    <li>111學年度第二學期 -- 系學會美宣部長</li>
+                    <li>112學年度第一學期 -- 系學會美宣部長</li>
+                    <li>參與校外服務，協助養老院社交活動</li>
+                    <li>專題: 車用避震器的彈簧零件之品質水準評估  -- 佳作</li>
+                </ul>
+                <h4>證照：</h4>
+                <ul>
+                    <li>中國工業工程學會 -- 生產與作業管理技術師證照</li>
+                    <li>ERPS -- Chinese Enterprise Resource Planning Society -- SD、MM模組</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 工作經歷區域 -->
+        <div id="experience" class="section">
+            <h2>工作經歷</h2>
+            <h3 class="company-name">友達股份有限公司</h3>
+            <p><strong>職位：</strong>資訊技師</p>
+            <p><strong>工作期間：</strong>2024.07 - 在職中</p>
+            <h4>專案經歷：</h4>
+            <ul>
+                <li>物料電子盤測管理系統</li>
+                <li>物料轉工單系統改善</li>
+                <li>門禁耗材領用登記網頁</li>
+            </ul>
+        </div>
+
+        <!-- 技能區域 -->
+        <div id="skills" class="section">
+            <h2>技能</h2>
+            <ul>
+                <h5>網頁技能：</h5>
+                <li>HTML, CSS, JavaScript, ASP.NET, C#</li>
+                <h5>數據分析：</h5>
+                <li>Python , MSSQL, mySQL</li>
+                <h5>網站爬蟲：</h5>
+                <li>RPA, Python</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 開關抽屜的功能
+        const drawer = document.getElementById('drawer');
+        const drawerToggle = document.getElementById('drawerToggle');
+        const container = document.querySelector('.container');  // 取得主內容區
+
+        drawerToggle.addEventListener('click', () => {
+            const currentLeft = drawer.style.left === '0px' ? '-240px' : '0px';
+            drawer.style.left = currentLeft;
+            document.body.style.marginLeft = currentLeft === '0px' ? '240px' : '0px';
+
+            // 當抽屜開啟時，隱藏內容區域
+            if (currentLeft === '0px') {
+                container.style.display = 'none';
+            } else {
+                container.style.display = 'block';
+            }
+        });
+
+        // 顯示區域的控制邏輯
+        const personalBtn = document.getElementById('personalBtn');
+        const educationBtn = document.getElementById('educationBtn');
+        const experienceBtn = document.getElementById('experienceBtn');
+        const skillsBtn = document.getElementById('skillsBtn');
+
+        const personalInfo = document.getElementById('personalInfo');
+        const education = document.getElementById('education');
+        const experience = document.getElementById('experience');
+        const skills = document.getElementById('skills');
+
+        function showSection(section) {
+            // 隱藏所有區域
+            personalInfo.classList.remove('visible');
+            education.classList.remove('visible');
+            experience.classList.remove('visible');
+            skills.classList.remove('visible');
+
+            // 顯示指定的區域
+            section.classList.add('visible');
+
+            // 收起抽屜
+            drawer.style.left = '-240px';
+            document.body.style.marginLeft = '0';
+
+            // 顯示主內容區
+            container.style.display = 'block';
+        }
+
+        // 設定按鈕的事件
+        personalBtn.addEventListener('click', () => showSection(personalInfo));
+        educationBtn.addEventListener('click', () => showSection(education));
+        experienceBtn.addEventListener('click', () => showSection(experience));
+        skillsBtn.addEventListener('click', () => showSection(skills));
+
+        // 預設顯示個人資訊區域
+        showSection(personalInfo);
+    </script>
+</body>
+</html>
