@@ -1,8 +1,8 @@
 const labels = {
   profile: '基本資料', experience: '工作經歷', projects: '專案', skills: '技能', education: '學歷與證照',
-  name: '中文姓名', englishName: '英文姓名', initials: '姓名縮寫', role: '職稱', focus: '專業定位',
+  name: '中文姓名', englishName: '慣用英文名', romanizedName: '護照拼音參考', initials: '姓名縮寫', role: '職稱', focus: '專業定位',
   headline: '主標題', intro: '首頁簡介', about: '關於我', email: 'Email', phone: '電話', showPhone: '公開顯示電話',
-  github: 'GitHub 個人頁', siteUrl: '網站網址', updatedAt: '更新日期', company: '單位／公司', englishCompany: '英文名稱',
+  github: 'GitHub 個人頁', siteUrl: '網站網址', lineUrl: 'LINE 加好友網址', lineLabel: 'LINE 按鈕文字', updatedAt: '更新日期', company: '單位／公司', englishCompany: '英文名稱',
   period: '期間', description: '說明', points: '工作重點', id: '識別代碼', number: '排序編號', category: '分類代碼',
   categoryLabel: '分類名稱', title: '標題', outcome: '主要成果', outcomeDetail: '成果補充', tags: '技術標籤',
   details: '工作內容', paper: '論文路徑', paperLabel: '論文按鈕文字', items: '項目', graduate: '研究所',
@@ -10,7 +10,7 @@ const labels = {
   award: '獎項與成績', certificates: '專業證照'
 };
 const sectionKeys = ['profile', 'experience', 'projects', 'skills', 'education'];
-const profileKeys = ['name','englishName','initials','role','focus','headline','intro','about','email','phone','showPhone','github','siteUrl','updatedAt'];
+const profileKeys = ['name','englishName','romanizedName','initials','role','focus','headline','intro','about','email','phone','showPhone','github','siteUrl','lineUrl','lineLabel','updatedAt'];
 const form = document.querySelector('#editor-form');
 const status = document.querySelector('#status');
 const nav = document.querySelector('#section-nav');
@@ -237,13 +237,6 @@ document.querySelector('#download').addEventListener('click', () => {
   URL.revokeObjectURL(link.href);
   toast('已下載 resume.json');
 });
-document.querySelector('#reset').addEventListener('click', () => {
-  if (!confirm('確定捨棄本機草稿並還原為目前網站版本？')) return;
-  model = clone(sourceModel);
-  localStorage.removeItem('resume-editor-draft');
-  render();
-  status.textContent = '已還原網站版本';
-});
 document.querySelector('#import-file').addEventListener('change', async event => {
   const file = event.target.files[0];
   if (!file) return;
@@ -258,5 +251,76 @@ document.querySelector('#import-file').addEventListener('change', async event =>
     toast(`匯入失敗：${error.message}`);
   }
   event.target.value = '';
+});
+
+const tokenDialog = document.querySelector('#token-dialog');
+const tokenInput = document.querySelector('#github-token');
+const publishButton = document.querySelector('#publish');
+const publishConfirm = document.querySelector('#publish-confirm');
+const encodeBase64 = value => {
+  const bytes = new TextEncoder().encode(value);
+  let binary = '';
+  bytes.forEach(byte => binary += String.fromCharCode(byte));
+  return btoa(binary);
+};
+const publish = async token => {
+  const endpoint = 'https://api.github.com/repos/fr3636k/resume/contents/content/resume.json';
+  const headers = {
+    Accept: 'application/vnd.github+json',
+    Authorization: `Bearer ${token}`,
+    'X-GitHub-Api-Version': '2022-11-28'
+  };
+  model.updatedAt = new Date().toLocaleDateString('en-CA', {timeZone:'Asia/Taipei'});
+  status.textContent = '正在儲存到 GitHub…';
+  publishButton.disabled = true;
+  publishConfirm.disabled = true;
+  try {
+    const currentResponse = await fetch(`${endpoint}?ref=master`, {headers});
+    if (!currentResponse.ok) throw new Error(currentResponse.status === 401 ? 'token 無效或已失效' : `無法讀取 GitHub 檔案（${currentResponse.status}）`);
+    const current = await currentResponse.json();
+    const content = `${JSON.stringify(model, null, 2)}\n`;
+    const saveResponse = await fetch(endpoint, {
+      method: 'PUT',
+      headers: {...headers, 'Content-Type':'application/json'},
+      body: JSON.stringify({
+        message: 'feat(resume): 更新履歷內容',
+        content: encodeBase64(content),
+        sha: current.sha,
+        branch: 'master'
+      })
+    });
+    if (!saveResponse.ok) {
+      const result = await saveResponse.json().catch(() => ({}));
+      throw new Error(result.message || `GitHub 儲存失敗（${saveResponse.status}）`);
+    }
+    sessionStorage.setItem('resume-github-token', token);
+    localStorage.removeItem('resume-editor-draft');
+    sourceModel = clone(model);
+    render();
+    status.textContent = '已提交至 GitHub，Pages 正在部署';
+    tokenDialog.close();
+    toast('儲存成功，網站約 1–2 分鐘後更新');
+  } catch (error) {
+    status.textContent = `儲存失敗：${error.message}`;
+    toast(`儲存失敗：${error.message}`);
+  } finally {
+    publishButton.disabled = false;
+    publishConfirm.disabled = false;
+  }
+};
+publishButton.addEventListener('click', () => {
+  const rememberedToken = sessionStorage.getItem('resume-github-token');
+  if (rememberedToken) publish(rememberedToken);
+  else tokenDialog.showModal();
+});
+publishConfirm.addEventListener('click', event => {
+  event.preventDefault();
+  const token = tokenInput.value.trim();
+  if (!token) {
+    toast('請先輸入 GitHub token');
+    tokenInput.focus();
+    return;
+  }
+  publish(token);
 });
 load().catch(error => { status.textContent = error.message; });

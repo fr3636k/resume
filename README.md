@@ -1,6 +1,8 @@
 # 李冠廷｜個人履歷與專案作品集
 
-以白色、深灰與低飽和藍色為主的響應式履歷網站，整理李冠廷的系統開發、醫療資訊、數據自動化、電腦視覺與研究經歷。網站從 320 px 手機螢幕到桌面皆可使用，個人照片保留自然彩色。
+以暖白、深灰與藍紫橘漸層構成的響應式履歷網站。版面採產品發表式敘事，從核心定位沿著一條會隨滾動推進的時間線，依序呈現研究所、醫療與研究專案、友達經歷、大學成果，最後收束到聯絡行動。
+
+網站慣用英文名為 **Chandlar Lee**；中文姓名的護照拼音參考為 **Kuan-Ting Li**。外交部領事事務局對照表中，威妥瑪拼音的「冠」為 `KUAN`、「廷」為 `TING`、「李」為 `LI`。實際證件仍應以既有護照登載為準。
 
 正式網址：<https://fr3636k.github.io/resume/>
 
@@ -34,15 +36,17 @@ npm run dev
 
 - 自動將草稿保存在目前瀏覽器的 `localStorage`。
 - 新增、刪除及調整工作經歷、專案與技能順序。
-- 匯入既有 JSON，或下載格式化的 `resume.json`。
-- 手機版操作，不會把內容傳到外部服務。
+- 匯入既有 JSON，或下載 `resume.json` 作為備份。
+- 按「儲存並發布」直接提交資料並觸發 GitHub Pages 部署。
+- 支援手機版操作；GitHub token 只存在目前分頁的 `sessionStorage`。
 
-GitHub Pages 無法安全地直接寫回 repository，因此發布流程是：
+第一次直接儲存需要建立只限 `fr3636k/resume` 的 GitHub fine-grained token，repository permission 僅開啟 `Contents: Read and write`。之後的流程為：
 
-1. 在編輯器完成修改並下載 `resume.json`。
-2. 用下載檔取代 `content/resume.json`。
-3. 執行 `npm run build` 與 `npm run check`。
-4. 依下方提交規範 commit 並 push；GitHub Actions 會自動部署。
+1. 在編輯器完成修改。
+2. 按「儲存並發布」。
+3. 第一次輸入 token；同一分頁後續不必重複輸入。
+4. 編輯器使用 GitHub Contents API 建立 `feat(resume): 更新履歷內容` commit。
+5. 等待 GitHub Actions 約 1–2 分鐘重新部署。
 
 ## 平常要改哪裡
 
@@ -53,11 +57,11 @@ GitHub Pages 無法安全地直接寫回 repository，因此發布流程是：
 | 個人照片 | `src/portrait.jpg` |
 | 可公開閱讀的論文 | `src/papers/` |
 | 履歷色彩、排版、手機版、列印樣式 | `src/style.css` |
-| 履歷導覽、專案篩選、複製信箱 | `src/app.js` |
+| 履歷導覽、時間線進度、複製信箱 | `src/app.js` |
 | 網頁結構、SEO、建置規則 | `scripts/build.mjs` |
 | GitHub 自動部署 | `.github/workflows/deploy.yml` |
 
-`showPhone` 預設為 `false`。公開 repository 仍能看到 JSON 原始內容；若不希望電話存在於原始碼，請直接清空 `phone`。
+`showPhone` 預設為 `false`。`lineUrl` 填入 LINE 官方加好友網址後，聯絡章節才會顯示「加入我的 LINE」。公開 repository 仍能看到 JSON 原始內容；若不希望電話存在於原始碼，請直接清空 `phone`。
 
 ## 網站內容
 
@@ -66,8 +70,8 @@ GitHub Pages 無法安全地直接寫回 repository，因此發布流程是：
 - 實務：醫療 App、會員網站、線上掛號、Kiosk、GCP 後端及部署。
 - 產業：友達光電超過一年校外實習，涵蓋物料系統、ERP／MES 自動化、資料分析與人因危害辨識。
 - 研究：釣魚網站偵測、文獻證據整理與學術寫作。
-- 專題：可從專案卡片直接開啟「車用避震器彈簧產品的品質水準評估」完整 PDF。
-- 工作經歷以響應式時間軸呈現；手機版會改為單欄閱讀。
+- 專題：可從大學階段直接開啟「車用避震器彈簧產品的品質水準評估」完整 PDF。
+- 所有學歷、經歷與專案整合在同一條響應式時間線，手機版會轉為單欄閱讀。
 
 公司專案僅公開去識別化的工作內容與個人備審報告所載成果，不上傳內部系統截圖。公開的學術專題 PDF 保留共同作者與指導教授資訊。
 

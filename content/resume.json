@@ -1,10 +1,11 @@
 {
   "name": "李冠廷",
-  "englishName": "Guan-Ting Li",
-  "initials": "GL",
+  "englishName": "Chandlar Lee",
+  "romanizedName": "Kuan-Ting Li",
+  "initials": "CL",
   "role": "資訊系統開發／研究生",
   "focus": "系統開發 × 數據分析 × AI 研究",
-  "headline": ["李冠廷", "Guan-Ting Li"],
+  "headline": ["李冠廷", "Chandlar Lee", "Kuan-Ting Li"],
   "intro": "國立臺北教育大學資訊科學系碩士生，具備智慧生產工程與製造現場經驗。專注於醫療系統開發、資料分析、流程自動化與可信的 AI 研究。",
   "about": "我習慣先釐清現場真正的問題，再把需求整理成能落地的系統。曾於友達光電實習超過一年，參與物料管理、ERP／MES 自動化及人因危害辨識；目前投入醫療資訊系統與釣魚網站偵測研究，工作橫跨開發、部署、維運與跨角色溝通。",
   "email": "fr3636k@gmail.com",
@@ -12,6 +13,8 @@
   "showPhone": false,
   "github": "https://github.com/fr3636k",
   "siteUrl": "https://fr3636k.github.io/resume/",
+  "lineUrl": "",
+  "lineLabel": "加入我的 LINE",
   "updatedAt": "2026-10-23",
   "experience": [
     {

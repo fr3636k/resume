@@ -2,7 +2,7 @@
 
 ## 更新內容
 
-可直接修改 `content/resume.json`，也可開啟 `/resume/editor/` 使用內容管理子頁，完成後下載 `resume.json` 並取代原檔。
+可直接修改 `content/resume.json`，也可開啟 `/resume/editor/` 使用內容管理子頁。管理頁的「儲存並發布」會透過 GitHub Contents API 直接提交並觸發部署；第一次使用需輸入只限本 repository 且具 `Contents: Read and write` 權限的 fine-grained token。
 
 1. 修改內容，將 `updatedAt` 改為這次實際更新日期。
 2. 以 `npm run build` 建置、`npm run check` 檢查。
@@ -34,9 +34,9 @@
 
 - 資料：姓名、email、任職起訖、學歷及成果數字正確。
 - 手機：測試 320、375、390、430 px 寬，檢查無橫向捲動，選單可開關且點選後收合。
-- 互動：各專案分類篩選符合預期，專案說明可展開，email、GitHub 與論文 PDF 可開啟。
-- 編輯器：可匯入、增刪、排序並下載 JSON；重新整理後本機草稿仍存在。
-- 列印：篩選任一類別後列印仍包含全部專案，結束列印後恢復篩選狀態。
+- 互動：時間線會隨滾動推進，專案說明可展開，email、GitHub、LINE 與論文 PDF 可開啟。
+- 編輯器：可匯入、增刪、排序、下載備份並直接儲存至 GitHub；重新整理後本機草稿仍存在。
+- 列印：列印時包含所有章節與展開後的專案說明。
 - 可用性：以 Tab、Enter 與 Escape 操作，檢查焦點、文字對比及縮放至 200% 的可讀性。
 - 部署：確認預設分支的 Actions 成功，正式網址可開啟。
 
@@ -46,7 +46,7 @@
 
 可把以下指令交給程式助理，並附上真實新增的資料：
 
-> 請依 AGENTS.md 更新 content/resume.json。我新增的經歷如下：……。維持白底、深灰與藍色的簡約風格，個人照片保持彩色，保留手機版與 GitHub Pages 相對路徑。不要推測職稱、日期、成果或工具。更新後執行 npm run build 與 npm run check，回報改動與未完成驗證。
+> 請依 AGENTS.md 更新 content/resume.json。我新增的經歷如下：……。維持連續時間線與產品發表式敘事，個人照片保持彩色，保留手機版與 GitHub Pages 相對路徑。不要推測職稱、日期、成果或工具。更新後執行 npm run build 與 npm run check，回報改動與未完成驗證。
 
 網站本身不需要 AI 金鑰或聊天機器人。之後若要加入真正的 AI 功能，應先確定用途與後端部署方案；不要把金鑰寫進 GitHub 或前端。
 
