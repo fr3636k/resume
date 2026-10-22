@@ -1,0 +1,13 @@
+{
+  "name": "guan-ting-resume",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "李冠廷的個人履歷與專案作品集",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/dev.mjs",
+    "check": "node scripts/check.mjs"
+  }
+}

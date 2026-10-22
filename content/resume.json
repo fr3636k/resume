@@ -1,0 +1,80 @@
+{
+  "name": "李冠廷",
+  "englishName": "Guan-Ting Li",
+  "initials": "GL",
+  "role": "資訊技師",
+  "focus": "系統開發 × 數據分析 × 流程自動化",
+  "headline": ["李冠廷", "Guan-Ting Li"],
+  "intro": "具備智慧生產工程背景，專注於網頁系統開發、數據分析與作業自動化。從製造現場需求出發，將資料與流程整合成實際可用的系統。",
+  "about": "曾參與物料管理、轉工單改善與耗材領用系統，使用 Python、SQL 與 RPA 支援生產資料分析及 ERP 作業串接。目前就讀研究所，持續累積學術學習與系統實務經驗。",
+  "email": "fr3636k@gmail.com",
+  "phone": "0938-280-289",
+  "showPhone": false,
+  "github": "https://github.com/fr3636k",
+  "siteUrl": "https://fr3636k.github.io/resume/",
+  "updatedAt": "2026-10-23",
+  "experience": [
+    {
+      "company": "友達股份有限公司",
+      "englishCompany": "AUO",
+      "role": "資訊技師",
+      "period": "2024.07 起",
+      "description": "參與製造現場的資訊系統與流程改善，將物料管理、生產數據及 ERP 作業串接成更清楚的工作流程。",
+      "points": ["開發物料管理與耗材領用網頁，提升作業標準化與資訊透明度。", "使用 Python、SQL 分析生產履歷與工單變化。", "運用 RPA 支援 ERP 挪帳作業，減少重複操作。"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "work-order",
+      "number": "01",
+      "category": "data",
+      "categoryLabel": "數據分析 / 自動化",
+      "title": "從生產履歷，找出工單改善的線索。",
+      "name": "物料轉工單系統改善",
+      "description": "以 Python 與 SQL 整理生產履歷、分析工單變化，將結果轉為網頁報表，並以 RPA 串接 ERP 挪帳作業。",
+      "outcome": "減少 40% 轉工單",
+      "outcomeDetail": "透過數據分析與系統改善，降低隱形工廠發生率。",
+      "tags": ["Python", "SQL", "RPA", "ERP"],
+      "details": ["分析：整理生產履歷，辨識工單變化。", "呈現：透過網頁報表及圖表，讓資訊更容易閱讀。", "串接：運用 RPA 將資訊帶入 ERP 挪帳作業，並提升系統完整度與可維護性。"]
+    },
+    {
+      "id": "materials",
+      "number": "02",
+      "category": "system",
+      "categoryLabel": "系統開發 / 物料管理",
+      "title": "讓物料、帳流與資訊，回到同一條線上。",
+      "name": "物料電子盤測管理系統",
+      "description": "將現場作業流程標準化，整合資訊流與帳流，讓物料管控、風險批管理及日期追蹤更清楚。",
+      "outcome": "讓物料流向更透明",
+      "outcomeDetail": "從風險批 Hold 貨到先進先出，建立一致的作業依據。",
+      "tags": ["流程標準化", "風險批管控", "先進先出"],
+      "details": ["管控：利用系統進行風險批 Hold 貨。", "流程：以日期管控支援先進先出，標準化作業方式。", "協作：提高物料帳流與資訊流透明度，減少人員溝通落差。"]
+    },
+    {
+      "id": "access",
+      "number": "03",
+      "category": "system",
+      "categoryLabel": "網頁應用 / 現場操作",
+      "title": "把耗材領用，變成直覺而清楚的操作。",
+      "name": "門禁耗材領用登記網頁",
+      "description": "以網頁搭配觸控螢幕，建立耗材實名領用流程，讓現場操作更直覺，也讓管理資訊更透明。",
+      "outcome": "領用紀錄可追蹤",
+      "outcomeDetail": "讓人員與耗材的使用資訊有跡可循。",
+      "tags": ["網頁開發", "觸控操作", "實名領用"],
+      "details": ["介面：結合觸控螢幕，讓領用登記更直覺。", "管理：以實名方式記錄耗材領用。", "資訊：提升門禁系統耗材管理的透明度與效率。"]
+    }
+  ],
+  "skills": [
+    { "number": "01", "title": "網頁與系統開發", "description": "從介面到系統邏輯，將現場需求轉為可操作的工具。", "items": ["HTML", "CSS", "JavaScript", "ASP.NET", "C#"] },
+    { "number": "02", "title": "數據處理與分析", "description": "整理生產資料、分析變化，讓決策有清楚的依據。", "items": ["Python", "MSSQL", "MySQL"] },
+    { "number": "03", "title": "流程與作業自動化", "description": "連結資料與作業流程，減少重複的手動操作。", "items": ["RPA", "Python", "ERP 作業串接"] }
+  ],
+  "education": {
+    "graduate": { "school": "", "department": "", "period": "", "status": "研究所在學", "research": [] },
+    "school": "國立臺中科技大學",
+    "department": "智慧生產工程系",
+    "activities": ["111 學年度第二學期、112 學年度第一學期擔任系學會美宣部長", "參與校外服務，協助養老院社交活動"],
+    "award": "專題佳作｜車用避震器的彈簧零件之品質水準評估",
+    "certificates": ["中國工業工程學會｜生產與作業管理技術師", "中華企業資源規劃學會｜ERP SD、MM 模組"]
+  }
+}
