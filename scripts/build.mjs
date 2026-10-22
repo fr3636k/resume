@@ -10,6 +10,9 @@ const list = values => values.map(value => `<li>${e(value)}</li>`).join('');
 const tags = values => values.map(value => `<span class="tag">${e(value)}</span>`).join('');
 const arrow = '<span aria-hidden="true">↗</span>';
 const nav = '<a href="#about">關於</a><a href="#experience">經歷</a><a href="#projects">專案</a><a href="#education">學歷</a><a href="#contact">聯絡</a>';
+const categoryNames = { system: '系統開發', data: '數據自動化', ai: '電腦視覺', research: '研究專題' };
+const categories = [...new Set(data.projects.map(project => project.category))];
+const filters = `<button type="button" data-filter="all" aria-pressed="true">全部專案 <span>${data.projects.length.toString().padStart(2, '0')}</span></button>${categories.map(category => `<button type="button" data-filter="${e(category)}" aria-pressed="false">${e(categoryNames[category] || category)}</button>`).join('')}`;
 const siteUrl = new URL(data.siteUrl);
 if (siteUrl.protocol !== 'https:') throw new Error('siteUrl 必須是 HTTPS');
 if (!/^https:\/\/github\.com\/[a-z\d-]+\/?$/i.test(data.github)) throw new Error('請填入有效的 GitHub 個人頁網址');
@@ -61,16 +64,16 @@ const html = `<!doctype html>
       <div class="wrap section-grid"><div class="section-label"><span>ABOUT</span><h2>關於我</h2></div><div class="about-content"><p class="lead">以現場需求為起點，<br>連結系統、資料與流程。</p><p>${e(data.about)}</p><div class="expertise-strip">${data.skills.map(s => `<a href="#skills">${e(s.title)} ${arrow}</a>`).join('')}</div></div></div>
     </section>
     <section id="projects" class="wrap section-pad" aria-labelledby="projects-title"><div class="section-heading"><div class="section-label"><span>SELECTED PROJECTS</span><h2 id="projects-title">專案經歷</h2></div><p>需求、實作與成果</p></div>
-      <div class="project-toolbar"><div class="filters" role="group" aria-label="依專案類別篩選" hidden><button type="button" data-filter="all" aria-pressed="true">全部專案 <span>${data.projects.length.toString().padStart(2,'0')}</span></button><button type="button" data-filter="system" aria-pressed="false">系統開發</button><button type="button" data-filter="data" aria-pressed="false">數據與自動化</button></div><p class="project-count" role="status" aria-live="polite">${data.projects.length} 個專案</p></div>
-      <div class="projects">${data.projects.map(p => `<article class="project" data-category="${e(p.category)}"><div class="project-copy"><div class="project-meta"><span>${e(p.categoryLabel)}</span><span class="project-index" aria-hidden="true">${e(p.number)}</span></div><h3>${e(p.name)}</h3><p class="project-description">${e(p.description)}</p><div class="project-outcome"><span>成果與改善</span><strong>${e(p.outcome)}</strong></div><div class="tags">${tags(p.tags)}</div><details><summary>查看我的工作內容 <span aria-hidden="true">＋</span></summary><ul>${list(p.details)}</ul><p>${e(p.outcomeDetail)}</p></details></div></article>`).join('')}</div>
+      <div class="project-toolbar"><div class="filters" role="group" aria-label="依專案類別篩選" hidden>${filters}</div><p class="project-count" role="status" aria-live="polite">${data.projects.length} 個專案</p></div>
+      <div class="projects">${data.projects.map(p => `<article class="project" data-category="${e(p.category)}"><div class="project-copy"><div class="project-meta"><span>${e(p.categoryLabel)}</span><span class="project-index" aria-hidden="true">${e(p.number)}</span></div><h3>${e(p.name)}</h3><p class="project-description">${e(p.description)}</p><div class="project-outcome"><span>成果與改善</span><strong>${e(p.outcome)}</strong></div><div class="tags">${tags(p.tags)}</div>${p.paper ? `<a class="paper-link" href="${e(p.paper)}" target="_blank" rel="noopener">${e(p.paperLabel || '閱讀完整專題論文 PDF')} ${arrow}</a>` : ''}<details><summary>查看我的工作內容 <span aria-hidden="true">＋</span></summary><ul>${list(p.details)}</ul><p>${e(p.outcomeDetail)}</p></details></div></article>`).join('')}</div>
     </section>
-    <section id="experience" class="experience-section section-pad"><div class="wrap section-grid"><div class="section-label"><span>EXPERIENCE</span><h2>工作經歷</h2></div><div class="timeline">${data.experience.map(x => `<article class="experience-item"><p class="eyebrow">${e(x.period)} <span> / ${e(x.englishCompany)}</span></p><div class="job-title"><h3>${e(x.company)}</h3><span>${e(x.role)}</span></div><p>${e(x.description)}</p><ul>${list(x.points)}</ul></article>`).join('')}</div></div></section>
+    <section id="experience" class="experience-section section-pad"><div class="wrap section-grid"><div class="section-label"><span>EXPERIENCE</span><h2>工作經歷</h2></div><div class="timeline">${data.experience.map(x => `<article class="experience-item"><div class="timeline-marker" aria-hidden="true"></div><div class="timeline-period"><span>${e(x.period)}</span><small>${e(x.englishCompany)}</small></div><div class="timeline-content"><div class="job-title"><h3>${e(x.company)}</h3><span>${e(x.role)}</span></div><p>${e(x.description)}</p><ul>${list(x.points)}</ul></div></article>`).join('')}</div></div></section>
     <section id="skills" class="wrap section-pad"><div class="section-heading"><div class="section-label"><span>SKILLS</span><h2>專業技能</h2></div></div><div class="skills-grid">${data.skills.map(s => `<article class="skill"><h3>${e(s.title)}</h3><p>${e(s.description)}</p><div class="tags">${tags(s.items)}</div></article>`).join('')}</div>
     </section>
     <section id="education" class="education-section section-pad"><div class="wrap section-grid"><div class="section-label"><span>EDUCATION</span><h2>學歷與證照</h2></div><div class="education-content">${data.education.graduate ? `<article class="education-item"><span class="education-badge">${e(data.education.graduate.status)}</span><h3>${e(data.education.graduate.school || '研究所')}</h3>${data.education.graduate.department ? `<p>${e(data.education.graduate.department)}</p>` : ''}${data.education.graduate.period ? `<p class="education-period">${e(data.education.graduate.period)}</p>` : ''}${data.education.graduate.research.length ? `<ul>${list(data.education.graduate.research)}</ul>` : ''}</article>` : ''}<article class="education-item"><h3>${e(data.education.school)}</h3><p>${e(data.education.department)}</p><p class="education-award">${e(data.education.award)}</p><details><summary>在學活動 <span aria-hidden="true">＋</span></summary><ul>${list(data.education.activities)}</ul></details></article><div class="certificates"><h4>專業證照</h4><ul>${list(data.education.certificates)}</ul></div></div></div></section>
     <section id="contact" class="contact-section"><div class="wrap"><p class="eyebrow">CONTACT</p><h2>歡迎交流與聯繫</h2><p>關於系統開發、資料分析或合作機會，歡迎透過 email 聯絡我。</p><div class="contact-actions"><a class="email-link" href="mailto:${e(data.email)}">${e(data.email)} ${arrow}</a><button type="button" class="copy-button" data-copy="${e(data.email)}" hidden>複製信箱</button></div><div class="contact-footer"><span>${e(data.name)} · ${e(data.englishName)}</span><div>${data.showPhone ? `<a href="tel:${e(data.phone.replace(/[^+\d]/g,''))}">${e(data.phone)}</a>` : ''}<a href="${e(data.github)}" target="_blank" rel="noopener noreferrer">GitHub ${arrow}</a><button type="button" data-print>列印 / 儲存 PDF ${arrow}</button></div></div></div></section>
   </main>
-  <footer class="site-footer wrap"><span>© ${e(data.updatedAt.slice(0,4))} ${e(data.englishName)}</span><a href="#">回到頂部 ↑</a></footer>
+  <footer class="site-footer wrap"><span>© ${e(data.updatedAt.slice(0,4))} ${e(data.englishName)}</span><div><a href="./editor/">內容管理</a><a href="#">回到頂部 ↑</a></div></footer>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>`;
@@ -79,8 +82,15 @@ const output = path.resolve(root, 'dist');
 if (path.dirname(output) !== path.resolve(root)) throw new Error('Unsafe output path');
 await rm(output, { recursive: true, force: true });
 await mkdir(path.join(root, 'dist/assets'), { recursive: true });
+await mkdir(path.join(root, 'dist/papers'), { recursive: true });
+await mkdir(path.join(root, 'dist/editor'), { recursive: true });
 await writeFile(path.join(root, 'dist/index.html'), html);
 for (const asset of ['style.css', 'app.js', 'favicon.svg', 'portrait.jpg']) await copyFile(path.join(root, 'src', asset), path.join(root, 'dist/assets', asset));
+await copyFile(path.join(root, 'src/papers/automotive-shock-absorber-spring-quality.pdf'), path.join(root, 'dist/papers/automotive-shock-absorber-spring-quality.pdf'));
+await copyFile(path.join(root, 'src/editor.html'), path.join(root, 'dist/editor/index.html'));
+await copyFile(path.join(root, 'src/editor.js'), path.join(root, 'dist/editor/editor.js'));
+await copyFile(path.join(root, 'src/editor.css'), path.join(root, 'dist/editor/editor.css'));
+await copyFile(path.join(root, 'content/resume.json'), path.join(root, 'dist/editor/resume.json'));
 await writeFile(path.join(root, 'dist/.nojekyll'), '');
 await writeFile(path.join(root, 'dist/robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${new URL('sitemap.xml', siteUrl).href}\n`);
 await writeFile(path.join(root, 'dist/sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${e(data.siteUrl)}</loc><lastmod>${e(data.updatedAt)}</lastmod></url></urlset>`);

@@ -6,6 +6,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const data = JSON.parse(await readFile(path.join(root, 'content/resume.json'), 'utf8'));
 const html = await readFile(path.join(root, 'dist/index.html'), 'utf8');
 assert(data.name && data.email && data.intro, 'Missing profile information');
+assert(data.education.graduate.school && data.education.graduate.department, 'Missing graduate education');
 assert(data.projects.length > 0, 'At least one project is required');
 assert.equal(new Set(data.projects.map(p => p.id)).size, data.projects.length, 'Project IDs must be unique');
 assert.match(data.updatedAt, /^\d{4}-\d{2}-\d{2}$/);
@@ -26,4 +27,10 @@ assert(!html.includes('undefined') && !html.includes('TODO'), 'Unfinished conten
 const assets = await readdir(path.join(root, 'dist/assets'));
 assert(assets.includes('portrait.jpg'));
 assert(!assets.some(p => p.endsWith('.map')));
-console.log(`Passed: profile data, ${data.projects.length} projects, anchor links, asset paths, metadata and structured data.`);
+await access(path.join(root, 'dist/editor/index.html'));
+await access(path.join(root, 'dist/editor/editor.js'));
+for (const project of data.projects.filter(project => project.paper)) {
+  assert.match(project.paper, /^\.\/papers\/[^/]+\.pdf$/);
+  await access(path.join(root, 'dist', project.paper.slice(2)));
+}
+console.log(`Passed: profile data, ${data.projects.length} projects, editor, papers, anchor links, asset paths, metadata and structured data.`);

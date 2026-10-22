@@ -9,3 +9,6 @@
 - 修改後執行 `npm run build`、`npm run check`。涉及互動時做瀏覽器驗證；無法執行時據實標註。
 - 只有 `dist/` 發布到 Pages；不要提交建置產出。
 - 需要發布時沿用現有 repository 與預設分支；不要強制推送或改寫歷史。
+- Git commit 一律使用 Conventional Commits：`<type>(<scope>): <繁體中文摘要>`。
+- 常用類型為 `feat`、`fix`、`docs`、`test`、`refactor`；scope 使用簡短英文，例如 `resume`、`editor`、`deploy`。
+- 範例：`feat(resume): 新增工作經歷時間軸`、`fix(editor): 修正專案排序`、`docs(readme): 更新內容維護流程`。

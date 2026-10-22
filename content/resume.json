@@ -2,11 +2,11 @@
   "name": "李冠廷",
   "englishName": "Guan-Ting Li",
   "initials": "GL",
-  "role": "資訊技師",
-  "focus": "系統開發 × 數據分析 × 流程自動化",
+  "role": "資訊系統開發／研究生",
+  "focus": "系統開發 × 數據分析 × AI 研究",
   "headline": ["李冠廷", "Guan-Ting Li"],
-  "intro": "具備智慧生產工程背景，專注於網頁系統開發、數據分析與作業自動化。從製造現場需求出發，將資料與流程整合成實際可用的系統。",
-  "about": "曾參與物料管理、轉工單改善與耗材領用系統，使用 Python、SQL 與 RPA 支援生產資料分析及 ERP 作業串接。目前就讀研究所，持續累積學術學習與系統實務經驗。",
+  "intro": "國立臺北教育大學資訊科學系碩士生，具備智慧生產工程與製造現場經驗。專注於醫療系統開發、資料分析、流程自動化與可信的 AI 研究。",
+  "about": "我習慣先釐清現場真正的問題，再把需求整理成能落地的系統。曾於友達光電實習超過一年，參與物料管理、ERP／MES 自動化及人因危害辨識；目前投入醫療資訊系統與釣魚網站偵測研究，工作橫跨開發、部署、維運與跨角色溝通。",
   "email": "fr3636k@gmail.com",
   "phone": "0938-280-289",
   "showPhone": false,
@@ -15,66 +15,162 @@
   "updatedAt": "2026-10-23",
   "experience": [
     {
-      "company": "友達股份有限公司",
+      "company": "醫療資訊系統開發",
+      "englishCompany": "Healthcare Systems",
+      "role": "研究專案協作",
+      "period": "目前",
+      "description": "參與醫療服務數位化專案，從使用者介面、後端服務到現場設備與部署，協助串起完整服務流程。",
+      "points": [
+        "參與 App、會員網站、線上掛號與 Kiosk 功能開發。",
+        "協助 GCP 後端服務、部署與日常維運。",
+        "與老師、醫師、同事及廠商協作，整理需求並處理現場問題。"
+      ]
+    },
+    {
+      "company": "友達光電股份有限公司",
       "englishCompany": "AUO",
-      "role": "資訊技師",
-      "period": "2024.07 起",
-      "description": "參與製造現場的資訊系統與流程改善，將物料管理、生產數據及 ERP 作業串接成更清楚的工作流程。",
-      "points": ["開發物料管理與耗材領用網頁，提升作業標準化與資訊透明度。", "使用 Python、SQL 分析生產履歷與工單變化。", "運用 RPA 支援 ERP 挪帳作業，減少重複操作。"]
+      "role": "模組製造部｜校外實習技師",
+      "period": "2024.07－研究所入學前",
+      "description": "超過一年投入製造資訊化與流程改善，將物料、工單和現場作業轉為可追蹤、可維護的數位流程。",
+      "points": [
+        "以 ASP.NET、C#、JavaScript 與 SQL 開發現場網頁系統。",
+        "運用 Python 與 RPA 串接 ERP／MES 作業並分析生產資料。",
+        "結合 YOLOv8、OpenPose 與 KIM 方法，探索人因危害自動評估。"
+      ]
     }
   ],
   "projects": [
     {
-      "id": "work-order",
+      "id": "healthcare-platform",
       "number": "01",
+      "category": "system",
+      "categoryLabel": "醫療資訊 / 全端協作",
+      "name": "醫療服務整合系統",
+      "description": "參與 App、會員網站、線上掛號與 Kiosk 等多端服務，並協助 GCP 後端與部署，讓使用流程能在不同裝置及現場情境中銜接。",
+      "outcome": "跨越開發、維運與現場協調",
+      "outcomeDetail": "專案仍持續進行，公開內容僅保留本人負責範圍，不揭露機構與病患相關資訊。",
+      "tags": ["App", "Web", "Kiosk", "GCP"],
+      "details": [
+        "開發：參與會員、掛號與現場自助服務功能。",
+        "部署：協助 GCP 後端服務與版本上線。",
+        "協作：在老師、醫師、同事與廠商之間整理需求及處理問題。"
+      ]
+    },
+    {
+      "id": "phishing-research",
+      "number": "02",
+      "category": "research",
+      "categoryLabel": "資安研究 / 學術寫作",
+      "name": "釣魚網站偵測研究",
+      "description": "參與釣魚網站偵測論文，從既有方法與資料集切入，整理研究缺口並協助建立可被文獻支持的論述。",
+      "outcome": "以 IEEE Access 投稿為研究目標",
+      "outcomeDetail": "研究進行中；現階段聚焦文獻證據、研究定位與論文內容的一致性。",
+      "tags": ["Phishing Detection", "Literature Review", "Academic Writing"],
+      "details": [
+        "文獻：核對引用是否確實支持對應主張。",
+        "寫作：協助 Introduction、Related Work 與研究缺口整理。",
+        "修訂：依研究方向調整論述、結構與用詞。"
+      ]
+    },
+    {
+      "id": "erp-mes-automation",
+      "number": "03",
       "category": "data",
       "categoryLabel": "數據分析 / 自動化",
-      "title": "從生產履歷，找出工單改善的線索。",
-      "name": "物料轉工單系統改善",
-      "description": "以 Python 與 SQL 整理生產履歷、分析工單變化，將結果轉為網頁報表，並以 RPA 串接 ERP 挪帳作業。",
-      "outcome": "減少 40% 轉工單",
-      "outcomeDetail": "透過數據分析與系統改善，降低隱形工廠發生率。",
-      "tags": ["Python", "SQL", "RPA", "ERP"],
-      "details": ["分析：整理生產履歷，辨識工單變化。", "呈現：透過網頁報表及圖表，讓資訊更容易閱讀。", "串接：運用 RPA 將資訊帶入 ERP 挪帳作業，並提升系統完整度與可維護性。"]
+      "name": "ERP／MES 工單自動化",
+      "description": "整合 MS SQL、Python 與 RPA，建立資料擷取、分析、ERP 自動過帳及結果回寫流程，並以操作介面呈現即時工單狀態。",
+      "outcome": "錯誤率降低 80%，工時節省 40%",
+      "outcomeDetail": "成果數字依個人備審專案報告紀錄；公開版已移除公司內部畫面與系統識別資訊。",
+      "tags": ["Python", "MS SQL", "RPA", "ERP／MES"],
+      "details": [
+        "分析：整理工單與生產履歷，建立自動判斷邏輯。",
+        "串接：以 RPA 執行 ERP 過帳並將結果回寫。",
+        "呈現：透過 UI 與資料庫串接，降低跨部門資訊落差。"
+      ]
     },
     {
-      "id": "materials",
-      "number": "02",
+      "id": "material-flow",
+      "number": "04",
       "category": "system",
       "categoryLabel": "系統開發 / 物料管理",
-      "title": "讓物料、帳流與資訊，回到同一條線上。",
-      "name": "物料電子盤測管理系統",
-      "description": "將現場作業流程標準化，整合資訊流與帳流，讓物料管控、風險批管理及日期追蹤更清楚。",
-      "outcome": "讓物料流向更透明",
-      "outcomeDetail": "從風險批 Hold 貨到先進先出，建立一致的作業依據。",
-      "tags": ["流程標準化", "風險批管控", "先進先出"],
-      "details": ["管控：利用系統進行風險批 Hold 貨。", "流程：以日期管控支援先進先出，標準化作業方式。", "協作：提高物料帳流與資訊流透明度，減少人員溝通落差。"]
+      "name": "物料全流程資訊化系統",
+      "description": "把 Excel 與人工紀錄轉為網頁流程，整合條碼、庫位、先進先出與資料庫，讓收料、領料、退料及盤點可追蹤。",
+      "outcome": "即時庫存率 99%，作業效率提升 20%",
+      "outcomeDetail": "專案報告另記錄退料查找時間降低 30%、庫存損失與成本降低 15%；公開版不含內部系統截圖。",
+      "tags": ["ASP.NET", "C#", "MS SQL", "Barcode"],
+      "details": [
+        "流程：梳理收料、領料、退料與盤點作業。",
+        "系統：建立條碼掃描、庫位視覺化與資料庫整合。",
+        "管理：導入 ABC 分類、先進先出與風險批管控。"
+      ]
     },
     {
-      "id": "access",
-      "number": "03",
-      "category": "system",
-      "categoryLabel": "網頁應用 / 現場操作",
-      "title": "把耗材領用，變成直覺而清楚的操作。",
-      "name": "門禁耗材領用登記網頁",
-      "description": "以網頁搭配觸控螢幕，建立耗材實名領用流程，讓現場操作更直覺，也讓管理資訊更透明。",
-      "outcome": "領用紀錄可追蹤",
-      "outcomeDetail": "讓人員與耗材的使用資訊有跡可循。",
-      "tags": ["網頁開發", "觸控操作", "實名領用"],
-      "details": ["介面：結合觸控螢幕，讓領用登記更直覺。", "管理：以實名方式記錄耗材領用。", "資訊：提升門禁系統耗材管理的透明度與效率。"]
+      "id": "ergonomics-vision",
+      "number": "05",
+      "category": "ai",
+      "categoryLabel": "電腦視覺 / 人因工程",
+      "name": "製造現場人因危害辨識",
+      "description": "整合 YOLOv8 與 OpenPose 進行即時姿勢辨識，偵測彎腰及搬運動作，再以 KIM 關鍵指標法自動產生風險分數。",
+      "outcome": "建立無感測器的即時評估流程",
+      "outcomeDetail": "透過 ROI 限縮、關節點精簡與跳幀機制改善推論效能，將人工觀察轉為可追蹤的量化資料。",
+      "tags": ["YOLOv8", "OpenPose", "KIM", "OpenCV"],
+      "details": [
+        "辨識：以影像偵測人員、彎腰與搬運姿勢。",
+        "評估：把姿勢特徵轉換為 KIM 人因風險分數。",
+        "效能：利用 ROI 與跳幀策略降低即時運算負擔。"
+      ]
+    },
+    {
+      "id": "spring-quality",
+      "number": "06",
+      "category": "research",
+      "categoryLabel": "品質工程 / 大學專題",
+      "name": "車用避震器彈簧產品的品質水準評估",
+      "description": "以製程能力指標 Cpk、準確度與精確度指標，建立多品質特性分析圖，評估外徑、自由高度及線徑的製程表現。",
+      "outcome": "系專題競賽佳作",
+      "outcomeDetail": "共同作者：吳翊華、李冠廷、李佳隆、張桀榕；指導教授：張倉銓。",
+      "tags": ["Cpk", "品質工程", "假設檢定", "資料分析"],
+      "paper": "./papers/automotive-shock-absorber-spring-quality.pdf",
+      "paperLabel": "閱讀完整專題論文 PDF",
+      "details": [
+        "評估：以 Cpk 衡量多項品質特性的製程能力。",
+        "分析：利用準確度與精確度指標找出改善方向。",
+        "決策：加入信賴區間與假設檢定，降低抽樣誤判。"
+      ]
     }
   ],
   "skills": [
-    { "number": "01", "title": "網頁與系統開發", "description": "從介面到系統邏輯，將現場需求轉為可操作的工具。", "items": ["HTML", "CSS", "JavaScript", "ASP.NET", "C#"] },
-    { "number": "02", "title": "數據處理與分析", "description": "整理生產資料、分析變化，讓決策有清楚的依據。", "items": ["Python", "MSSQL", "MySQL"] },
-    { "number": "03", "title": "流程與作業自動化", "description": "連結資料與作業流程，減少重複的手動操作。", "items": ["RPA", "Python", "ERP 作業串接"] }
+    {
+      "number": "01",
+      "title": "應用與系統開發",
+      "description": "從介面、後端到雲端部署，將需求轉成可操作且可維護的服務。",
+      "items": ["JavaScript", "ASP.NET", "C#", "GCP", "IIS"]
+    },
+    {
+      "number": "02",
+      "title": "數據與流程自動化",
+      "description": "整理生產資料並串接 ERP／MES，減少重複操作與資訊落差。",
+      "items": ["Python", "MS SQL", "RPA", "ERP／MES", "QC 七大手法"]
+    },
+    {
+      "number": "03",
+      "title": "電腦視覺與研究",
+      "description": "將影像辨識用於現場問題，也重視研究論述與引用證據的一致性。",
+      "items": ["OpenCV", "YOLOv8", "OpenPose", "MediaPipe", "文獻整理"]
+    }
   ],
   "education": {
-    "graduate": { "school": "", "department": "", "period": "", "status": "研究所在學", "research": [] },
+    "graduate": {
+      "school": "國立臺北教育大學",
+      "department": "資訊科學系碩士班",
+      "period": "目前",
+      "status": "碩士班在學",
+      "research": ["釣魚網站偵測", "影像處理與 OpenCV", "重視可驗證的研究引用與實驗依據"]
+    },
     "school": "國立臺中科技大學",
-    "department": "智慧生產工程系",
-    "activities": ["111 學年度第二學期、112 學年度第一學期擔任系學會美宣部長", "參與校外服務，協助養老院社交活動"],
-    "award": "專題佳作｜車用避震器的彈簧零件之品質水準評估",
-    "certificates": ["中國工業工程學會｜生產與作業管理技術師", "中華企業資源規劃學會｜ERP SD、MM 模組"]
+    "department": "智慧生產工程系｜2025.06 畢業",
+    "activities": ["曾任系學會美宣部長與班級事務股長", "參與籃球隊及養老院志工服務"],
+    "award": "多次獲書卷獎，113-1 與 113-2 學期班級排名第 2；系專題競賽佳作",
+    "certificates": ["中國工業工程學會｜生產與作業管理技術師", "中華企業資源規劃學會｜ERP 規劃師"]
   }
 }

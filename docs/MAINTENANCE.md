@@ -2,7 +2,9 @@
 
 ## 更新內容
 
-1. 修改 `content/resume.json`，將 `updatedAt` 改為這次實際更新日期。
+可直接修改 `content/resume.json`，也可開啟 `/resume/editor/` 使用內容管理子頁，完成後下載 `resume.json` 並取代原檔。
+
+1. 修改內容，將 `updatedAt` 改為這次實際更新日期。
 2. 以 `npm run build` 建置、`npm run check` 檢查。
 3. 使用 `npm run dev` 預覽；確認文字、圖片與連結。
 4. 將修改提交並推送到 GitHub，檢查 Actions。
@@ -15,11 +17,12 @@
 
 - `id`：唯一英文代號，例如 `inventory-dashboard`。
 - `number`：顯示順序，例如 `04`。
-- `category`：目前為 `system`（系統開發）或 `data`（數據與自動化）。
+- `category`：可用 `system`（系統開發）、`data`（數據自動化）、`ai`（電腦視覺）或 `research`（研究專題）。
 - `categoryLabel`、`name`、`description`：專案類型、名稱與摘要。
 - `outcome`、`outcomeDetail`：有根據的成果，沒有數據時用具體描述。
 - `tags`：實際使用的工具或流程特點。
 - `details`：可展開的工作內容。
+- `paper`、`paperLabel`：選填。PDF 放在 `src/papers/`，路徑使用 `./papers/檔名.pdf`。
 
 新版以專案名稱、摘要與成果文字呈現，不需要製作裝飾示意圖。不必為更新經歷新增框架或套件。
 
@@ -31,7 +34,8 @@
 
 - 資料：姓名、email、任職起訖、學歷及成果數字正確。
 - 手機：測試 320、375、390、430 px 寬，檢查無橫向捲動，選單可開關且點選後收合。
-- 互動：全部／系統／數據篩選分別符合預期，專案說明可展開，email 與 GitHub 可開啟。
+- 互動：各專案分類篩選符合預期，專案說明可展開，email、GitHub 與論文 PDF 可開啟。
+- 編輯器：可匯入、增刪、排序並下載 JSON；重新整理後本機草稿仍存在。
 - 列印：篩選任一類別後列印仍包含全部專案，結束列印後恢復篩選狀態。
 - 可用性：以 Tab、Enter 與 Escape 操作，檢查焦點、文字對比及縮放至 200% 的可讀性。
 - 部署：確認預設分支的 Actions 成功，正式網址可開啟。
