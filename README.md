@@ -1,6 +1,6 @@
 # 李冠廷｜個人履歷與專案作品集
 
-以暖白、深灰與藍紫橘漸層構成的響應式履歷網站。版面採產品發表式敘事，從核心定位沿著一條會隨滾動推進的時間線，依序呈現研究所、醫療與研究專案、友達經歷、大學成果，最後收束到聯絡行動。
+以白色、深灰與少量藍色構成的響應式履歷網站。首頁保留乾淨的彩色大頭照與資訊層次，往下沿著一條會隨滾動推進的時間線，依序呈現研究所、醫療與研究專案、友達經歷、大學成果，最後收束到聯絡資訊。畫面上方會顯示目前閱讀階段，避免長頁面內容混淆。
 
 網站慣用英文名為 **Chandlar Lee**；中文姓名的護照拼音參考為 **Kuan-Ting Li**。外交部領事事務局對照表中，威妥瑪拼音的「冠」為 `KUAN`、「廷」為 `TING`、「李」為 `LI`。實際證件仍應以既有護照登載為準。
 
@@ -10,7 +10,8 @@
 
 - 原生 HTML、現代 CSS、JavaScript 與 Node.js 靜態建置。
 - 零第三方前端套件、無資料庫、無 API 金鑰。
-- GitHub Actions 自動建置並部署 `dist/` 到 GitHub Pages。
+- GitHub Actions CI 會在所有 push 與 pull request 執行建置及內容檢查。
+- CD 只在 `master` 通過相同檢查後部署 `dist/` 到 GitHub Pages。
 - canonical、Open Graph、Person 結構化資料、sitemap、404 與舊網址轉址。
 - 鍵盤焦點、狀態播報、減少動畫偏好與 A4 列印樣式。
 
@@ -60,6 +61,7 @@ npm run dev
 | 履歷導覽、時間線進度、複製信箱 | `src/app.js` |
 | 網頁結構、SEO、建置規則 | `scripts/build.mjs` |
 | GitHub 自動部署 | `.github/workflows/deploy.yml` |
+| CI 建置與內容檢查 | `.github/workflows/ci.yml` |
 
 `showPhone` 預設為 `false`。`lineUrl` 填入 LINE 官方加好友網址後，聯絡章節才會顯示「加入我的 LINE」。公開 repository 仍能看到 JSON 原始內容；若不希望電話存在於原始碼，請直接清空 `phone`。
 

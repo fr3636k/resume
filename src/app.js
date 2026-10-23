@@ -53,25 +53,14 @@ updateProgress();
 addEventListener('scroll', updateProgress, {passive:true});
 addEventListener('resize', updateProgress);
 
-const revealItems = document.querySelectorAll('[data-reveal]');
-if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
-  }), {threshold:.08, rootMargin:'0px 0px -8% 0px'});
-  revealItems.forEach(item => revealObserver.observe(item));
-} else {
-  revealItems.forEach(item => item.classList.add('visible'));
-}
-
 if ('IntersectionObserver' in window) {
   const links = [...document.querySelectorAll('.desktop-nav a')];
+  const stage = document.querySelector('[data-stage]');
   const sectionObserver = new IntersectionObserver(entries => entries.forEach(entry => {
     if (!entry.isIntersecting) return;
     links.forEach(link => link.toggleAttribute('aria-current', link.hash === `#${entry.target.id}`));
-  }), {rootMargin:'-25% 0px -60% 0px'});
+    if (stage) stage.textContent = entry.target.dataset.stageLabel;
+  }), {rootMargin:'-28% 0px -58% 0px'});
   links.forEach(link => {
     const section = document.querySelector(link.hash);
     if (section) sectionObserver.observe(section);

@@ -22,6 +22,7 @@ assert.match(html, /rel="canonical"/);
 assert.match(html, /prefers-reduced-motion|assets\/style.css/);
 assert.equal((html.match(/class="feature"/g) || []).length, data.projects.length);
 assert.match(html, /class="journey-track"/);
+assert.match(html, /class="stage-indicator"/);
 assert.match(html, /Chandlar Lee/);
 assert(!html.includes('Guan-Ting Li') && !html.includes('>GL<'), 'Old English name or initials remain');
 const jsonld = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);

@@ -80,20 +80,17 @@ const html = `<!doctype html>
   </header>
   <main id="main">
     <section class="hero">
-      <div class="hero-glow glow-one"></div><div class="hero-glow glow-two"></div>
       <div class="hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow">SYSTEMS · RESEARCH · REAL-WORLD IMPACT</p>
+          <p class="eyebrow">SYSTEM DEVELOPMENT · DATA · RESEARCH</p>
           <h1><span>${e(englishFirst)}</span><span>${e(englishLast)}</span></h1>
           <p class="legal-name">${e(data.name)} <span>/</span> ${e(data.romanizedName)}</p>
-          <p class="hero-statement">把複雜的現場，<br><em>做成直覺的系統。</em></p>
           <p class="hero-intro">${e(data.intro)}</p>
-          <div class="hero-actions"><a class="primary-button" href="#now">沿著歷程認識我 <span aria-hidden="true">↓</span></a><a href="mailto:${e(data.email)}">直接聯絡 ${arrow}</a></div>
+          <div class="hero-actions"><a class="primary-button" href="#now">查看我的歷程 <span aria-hidden="true">↓</span></a><a href="mailto:${e(data.email)}">聯絡我 ${arrow}</a></div>
         </div>
         <div class="hero-visual">
           <div class="portrait-shell"><img src="./assets/portrait.jpg" alt="${e(data.name)}的彩色個人照片" width="333" height="388" fetchpriority="high"></div>
-          <div class="orbit-label label-a">BUILD<br><b>醫療系統</b></div>
-          <div class="orbit-label label-b">RESEARCH<br><b>可信 AI</b></div>
+          <p><span>目前</span>${e(data.education.graduate.school)}<br>${e(data.education.graduate.department)}</p>
         </div>
       </div>
       <div class="capability-rail">
@@ -102,40 +99,41 @@ const html = `<!doctype html>
     </section>
 
     <section class="story-opening" id="story">
-      <p class="eyebrow">ONE CONTINUOUS JOURNEY</p>
-      <h2>不是把經歷分成幾格，<br>而是看每一步如何走到現在。</h2>
+      <p class="eyebrow">ABOUT</p>
+      <h2>關於我</h2>
       <p>${e(data.about)}</p>
     </section>
 
     <section class="journey" aria-label="學習與工作歷程">
+      <div class="stage-indicator"><span>目前閱讀</span><strong data-stage>研究所與目前專案</strong></div>
       <div class="journey-track">
-        <article class="chapter chapter-now" id="now" data-reveal>
-          <div class="chapter-marker"><span>NOW</span></div>
+        <article class="chapter chapter-now" id="now" data-stage-label="研究所與目前專案">
+          <div class="chapter-marker"><span>01</span><strong>NOW</strong></div>
           <div class="chapter-content">
             <p class="chapter-kicker">現在 · ${e(data.education.graduate.school)}</p>
-            <h2>研究與開發，<br><em>同時面向真實使用者。</em></h2>
-            <p class="chapter-lead">${e(data.education.graduate.department)}在學。參與醫療服務的多端系統，也投入釣魚網站偵測論文，讓實作與研究互相驗證。</p>
-            <div class="chapter-note"><span>RESEARCH FOCUS</span>${tags(data.education.graduate.research)}</div>
+            <h2>${e(data.education.graduate.department)}</h2>
+            <p class="chapter-lead">目前參與醫療服務的多端系統開發，也投入釣魚網站偵測論文，工作涵蓋實作、部署、文獻整理與跨角色溝通。</p>
+            <div class="chapter-note"><span>研究方向</span>${tags(data.education.graduate.research)}</div>
             ${features(graduateProjects)}
           </div>
         </article>
 
-        <article class="chapter chapter-auo" id="auo" data-reveal>
-          <div class="chapter-marker"><span>AUO</span></div>
+        <article class="chapter chapter-auo" id="auo" data-stage-label="友達光電">
+          <div class="chapter-marker"><span>02</span><strong>AUO</strong></div>
           <div class="chapter-content">
             <p class="chapter-kicker">${e(data.experience[1].period)} · ${e(data.experience[1].englishCompany)}</p>
-            <h2>走進製造現場，<br><em>讓資料真正開始流動。</em></h2>
+            <h2>${e(data.experience[1].company)}</h2>
             <p class="chapter-lead">${e(data.experience[1].description)}</p>
             <ul class="chapter-points">${list(data.experience[1].points)}</ul>
             ${features(auoProjects)}
           </div>
         </article>
 
-        <article class="chapter chapter-university" id="university" data-reveal>
-          <div class="chapter-marker"><span>NUTC</span></div>
+        <article class="chapter chapter-university" id="university" data-stage-label="臺中科大">
+          <div class="chapter-marker"><span>03</span><strong>NUTC</strong></div>
           <div class="chapter-content">
             <p class="chapter-kicker">2025.06 畢業 · ${e(data.education.school)}</p>
-            <h2>從工程底層出發，<br><em>建立分析問題的方法。</em></h2>
+            <h2>${e(data.education.department.replace('｜2025.06 畢業',''))}</h2>
             <p class="chapter-lead">${e(data.education.department.replace('｜2025.06 畢業',''))}。${e(data.education.award)}。</p>
             ${features(universityProjects)}
             <div class="foundation-grid">
@@ -145,11 +143,11 @@ const html = `<!doctype html>
           </div>
         </article>
 
-        <article class="chapter chapter-contact" id="contact" data-reveal>
-          <div class="chapter-marker"><span>NEXT</span></div>
+        <article class="chapter chapter-contact" id="contact" data-stage-label="聯絡資訊">
+          <div class="chapter-marker"><span>04</span><strong>CONTACT</strong></div>
           <div class="chapter-content">
-            <p class="chapter-kicker">THE NEXT CHAPTER</p>
-            <h2>下一個值得解決的問題，<br><em>也許可以一起完成。</em></h2>
+            <p class="chapter-kicker">CONTACT</p>
+            <h2>保持聯絡</h2>
             <p class="chapter-lead">歡迎交流醫療資訊、系統開發、資料分析、研究或合作機會。</p>
             <div class="contact-actions">
               <a class="contact-button email-button" href="mailto:${e(data.email)}">${e(data.email)} ${arrow}</a>
